@@ -1,0 +1,16 @@
+Flask
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
+numpy==1.23
+scipy
+scikit-learn
+matplotlib
+seaborn
+pandas
+nltk
+sastrawi
+wordcloud
+contractions

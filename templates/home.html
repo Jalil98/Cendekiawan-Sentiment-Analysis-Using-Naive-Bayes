@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="text-center text-white">
+                    <form method="POST" action="/predict-text" enctype='multipart/form-data'>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="formText" class="form-label">Input text in here</label>
+                                    <textarea class="form-control" id="formText" name = "input_text" rows="3"></textarea>
+                                </div>
+                                <div class="d-flex">
+                                    <a href="{{url_for('home')}}"><button type="button" class="btn btn-secondary mt-2">Clear</button></a>
+                                    <button type="submit" class="btn btn-outline-primary mt-2 mx-2" onclick="$('#loading-text').show();">Prediction</button>
+                                </div>
+                                <div id="loading-text" style="display:none;"><img src="{{ url_for('static', filename='images/loading-buffering.gif') }}" alt="" /></div>
+                            </div>
+                        </div>
+                    </form>
+                    {% if result_pred and result_proba %}
+                    <h4>Sentiment Result = {{result_pred}} {{result_proba}}%</h4>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="text-center text-white">
+                    <form method="POST" action="/predict-file" enctype='multipart/form-data'>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Upload your file in here</label>
+                                    <input class="form-control" type = "file" name = "file" id="formFile">
+                                </div>
+                                <div class="d-flex">
+                                    <a href="{{url_for('home')}}"><button type="button" class="btn btn-secondary mt-2">Clear</button></a>
+                                    <button type="submit" class="btn btn-outline-primary mt-2 mx-2" onclick="$('#loading-file').show();">Prediction</button>
+                                </div>
+                                <div id="loading-file" style="display:none;"><img src="{{ url_for('static', filename='images/loading-buffering.gif') }}" alt="" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock %}
